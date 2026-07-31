@@ -10,6 +10,7 @@ const menuItems = [
   { id: 'profile', name: '个人名片设置', icon: '👤' },
   { id: 'background', name: '视觉背景配置', icon: '🌌' },
   { id: 'music', name: '音乐播放设置', icon: '🎵' },
+  { id: 'posts', name: '文章管理', icon: '📝' },
   { id: 'announcement', name: '公告编辑', icon: '📢' },
   { id: 'projects', name: '项目管理', icon: '🚀' },
   { id: 'footer', name: '首页底部设置', icon: '🧩' },
@@ -190,6 +191,7 @@ export default function SettingsPage() {
               {activeTab === 'aicat' && <AICatSection d={formData} hg={handleGeminiUpdate} />}
               {activeTab === 'announcement' && <AnnouncementSection />}
               {activeTab === 'projects' && <ProjectsSection />}
+              {activeTab === 'posts' && <PostsSection />}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -523,7 +525,7 @@ function AnnouncementSection() {
 
   const load = async () => {
     try {
-      const res = await fetch('/api/push/announcements', { headers: { Authorization: 'Bearer hayenai-admin-2024' } });
+      const res = await fetch('/api/announcements', { cache: 'no-store' });
       const j = await res.json();
       setData(j);
     } catch {}
@@ -536,9 +538,9 @@ function AnnouncementSection() {
   const save = async () => {
     setSaving(true);
     try {
-      const res = await fetch('/api/push/announcements', {
+      const res = await fetch('/api/announcements', {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json', Authorization: 'Bearer hayenai-admin-2024' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
       const j = await res.json();
@@ -639,11 +641,7 @@ function AnnouncementSection() {
               if (!confirm('确定清空当前公告？\n点击 OK 后内容将被清空，公告状态将被禁用。')) return;
               setSaving(true);
               try {
-                const res = await fetch('/api/push/announcements', {
-                  method: 'PUT',
-                  headers: { 'Content-Type': 'application/json', Authorization: 'Bearer hayenai-admin-2024' },
-                  body: JSON.stringify({ enabled: false, content: '', link: '', style: 'plain', colorFrom: '#a78bfa', colorTo: '#ec4899', scheduledEnabled: false, scheduledAt: null }),
-                });
+                const res = await fetch('/api/announcements', { method: 'DELETE' });
                 const j = await res.json();
                 if (j.ok) {
                   setData(j.announcement);

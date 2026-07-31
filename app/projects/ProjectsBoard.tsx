@@ -1,24 +1,43 @@
 "use client";
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import BackButton from '../../components/BackButton'; // 注意层级路径
-import { projectsData } from '../../data/projects';
+
+interface Project {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  githubUrl: string;
+  tags: string[];
+}
 
 export default function ProjectsBoard() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // 通过 API 加载项目 (替代静态 import, 管理页保存后可见)
+  useEffect(() => {
+    fetch('/api/projects', { cache: 'no-store' })
+      .then(r => r.json())
+      .then(d => { if (d?.projects) setProjects(d.projects); })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
 
   // 搜索过滤逻辑
   const filteredProjects = useMemo(() => {
-    if (searchQuery.trim() === "") return projectsData;
+    if (searchQuery.trim() === "") return projects;
     const query = searchQuery.trim().toLowerCase();
 
-    return projectsData.filter(project =>
+    return projects.filter(project =>
       project.name.toLowerCase().includes(query) ||
       project.description.toLowerCase().includes(query) ||
       project.tags.some(tag => tag.toLowerCase().includes(query))
     );
-  }, [searchQuery]);
+  }, [searchQuery, projects]);
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 sm:px-10 py-10 relative z-10">
@@ -105,7 +124,18 @@ export default function ProjectsBoard() {
           ))}
         </AnimatePresence>
 
-        {filteredProjects.length === 0 && (
+        {loading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="col-span-full text-center py-20 text-slate-500 font-serif w-full"
+          >
+            <div className="w-10 h-10 border-2 border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin mx-auto mb-4" />
+            正在加载项目...
+          </motion.div>
+        )}
+
+        {!loading && filteredProjects.length === 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
