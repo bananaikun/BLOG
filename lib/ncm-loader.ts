@@ -14,15 +14,46 @@
 
 /* eslint-disable @typescript-eslint/no-require-imports */
 
+import path from 'path';
+
 let _ncm: any = null;
+
+function resolveNcm(): any {
+  // 用 eval 包裹 require, 绕过 Turbopack/webpack 的静态分析
+  // 运行时才会真正执行 require
+  const dynamicRequire: (name: string) => any = eval('require');
+
+  // 1. 先尝试普通 require（本地开发 / 常规 Node 环境）
+  try {
+    return dynamicRequire('NeteaseCloudMusicApi');
+  } catch {
+    // ignore
+  }
+
+  // 2. 尝试通过 require.resolve 定位真实路径
+  try {
+    const resolved = (dynamicRequire as any).resolve('NeteaseCloudMusicApi');
+    return dynamicRequire(resolved);
+  } catch {
+    // ignore
+  }
+
+  // 3. 兜底：基于 process.cwd() 的绝对路径（Vercel 运行时）
+  try {
+    const absolutePath = path.join(process.cwd(), 'node_modules', 'NeteaseCloudMusicApi');
+    return dynamicRequire(absolutePath);
+  } catch {
+    // ignore
+  }
+
+  // 4. 最后一次用普通 require 抛出原始错误
+  return dynamicRequire('NeteaseCloudMusicApi');
+}
 
 export async function loadNcm(): Promise<any> {
   if (_ncm) return _ncm;
 
-  // 用 eval 包裹 require, 绕过 Turbopack/webpack 的静态分析
-  // 运行时才会真正执行 require('NeteaseCloudMusicApi')
-  const dynamicRequire: (name: string) => any = eval('require');
-  const mod = dynamicRequire('NeteaseCloudMusicApi');
+  const mod = resolveNcm();
   _ncm = mod.default || mod;
   return _ncm;
 }
