@@ -80,8 +80,14 @@ export default function Navbar() {
     { name: '首页', href: '/' },
     { name: '项目', href: '/projects' },
     { name: '公告', href: '/announcements' },
+    { name: '时间线', href: '/timeline' },
     { name: '照片墙', href: '/photowall' },
     { name: '音乐', href: '/music' },
+    { name: '瞬间', href: '/moments' },
+    { name: '留言', href: '/chatter' },
+    { name: '友链', href: '/friends' },
+    { name: '炼金', href: '/tree' },
+    { name: '关于', href: '/about' },
   ];
 
   const settingsLink = { name: '⚙ 设置', href: '/settings' };

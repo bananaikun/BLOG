@@ -57,7 +57,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <div className="fixed inset-0 z-[-2] pointer-events-none overflow-hidden">
                 <div className="absolute inset-0 z-0 bg-white/30 dark:bg-slate-900/40 backdrop-blur-md transition-colors duration-1000"></div>
                 <div className="absolute inset-0 z-0 opacity-60 dark:opacity-20 mix-blend-color transition-opacity duration-1000 transform-gpu"
-                  style={{ background: `linear-gradient(-45deg, ${mergedConfig.themeColors.join(', ')})`, backgroundSize: '400% 400%', animation: 'gradientMove 15s ease infinite' }}>
+                  style={{ background: `linear-gradient(-45deg, ${(mergedConfig.themeColors || []).join(', ')})`, backgroundSize: '400% 400%', animation: 'gradientMove 15s ease infinite' }}>
                 </div>
                 <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-white/40 dark:bg-indigo-900/20 blur-[100px] rounded-full md:mix-blend-overlay"></div>
                 <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-400/30 dark:bg-purple-900/30 blur-[100px] rounded-full md:mix-blend-overlay"></div>

@@ -881,7 +881,7 @@ function PostsSection() {
     if (!confirm(`确定删除文章 ${slug}？此操作不可恢复！`)) return;
     setSaving(true);
     try {
-      const res = await fetch(`/api/posts/[slug]?slug=${encodeURIComponent(slug)}`, { method: 'DELETE' });
+      const res = await fetch(`/api/posts/${encodeURIComponent(slug)}`, { method: 'DELETE' });
       const j = await res.json();
       if (j.ok) {
         setMsg('🗑️ 文章已删除');

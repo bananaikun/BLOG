@@ -19,6 +19,9 @@ export const siteConfig: any = {
   bgImages: [],
   cloudMusicIds: [],
   danmakuList: [],
+  // 主题渐变色 (防止 runtimeConfig 未定义时抛 TypeError)
+  themeColors: ['#6366f1', '#a855f7', '#ec4899', '#f43f5e'],
+  useGradient: false,
   buildDate: '2026-03-23T00:00:00',
   enableLevelSystem: true,
   icpConfig: { name: '', link: '' },

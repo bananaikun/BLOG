@@ -18,8 +18,13 @@ function getPostPath(slug: string) {
 }
 
 // GET: 获取单篇文章 (含 markdown 原文, 供编辑器加载)
-export async function GET(request: NextRequest) {
-  const slug = request.nextUrl.searchParams.get('slug') || '';
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  // 优先从路径参数读取, 兼容 query parameter
+  const routeSlug = (await params)?.slug || '';
+  const slug = routeSlug || request.nextUrl.searchParams.get('slug') || '';
   if (!slug) {
     return NextResponse.json({ ok: false, error: '缺少 slug 参数' }, { status: 400 });
   }
@@ -49,8 +54,12 @@ export async function GET(request: NextRequest) {
 
 // PUT: 更新文章 (可改 frontmatter + 正文, 也可重命名 slug)
 // body: { title?, content?, description?, tags?, cover?, date?, newSlug? }
-export async function PUT(request: NextRequest) {
-  const slug = request.nextUrl.searchParams.get('slug') || '';
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  const routeSlug = (await params)?.slug || '';
+  const slug = routeSlug || request.nextUrl.searchParams.get('slug') || '';
   if (!slug) {
     return NextResponse.json({ ok: false, error: '缺少 slug 参数' }, { status: 400 });
   }
@@ -110,8 +119,12 @@ export async function PUT(request: NextRequest) {
 }
 
 // DELETE: 删除文章
-export async function DELETE(request: NextRequest) {
-  const slug = request.nextUrl.searchParams.get('slug') || '';
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  const routeSlug = (await params)?.slug || '';
+  const slug = routeSlug || request.nextUrl.searchParams.get('slug') || '';
   if (!slug) {
     return NextResponse.json({ ok: false, error: '缺少 slug 参数' }, { status: 400 });
   }
