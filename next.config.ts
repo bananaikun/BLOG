@@ -12,10 +12,13 @@ const nextConfig: NextConfig = {
   // NCMAPI 作为外部 require 加载 (内部用 fs.readdir 动态 require ./module/*)
   // 配合 lib/ncm-loader.ts 的 eval('require') 绕过 Turbopack 静态分析
   serverExternalPackages: ['NeteaseCloudMusicApi'],
-  // 强制将 NeteaseCloudMusicApi 及其 module 子目录打包进服务端产物，
-  // 解决 Vercel 运行时 Cannot find module 'NeteaseCloudMusicApi' 错误
+  // 强制将 NeteaseCloudMusicApi 及其嵌套依赖打包进服务端产物，
+  // 解决 Vercel 运行时 Cannot find module 'NeteaseCloudMusicApi' / 'form-data' 等错误
   outputFileTracingIncludes: {
-    '**/*': ['./node_modules/NeteaseCloudMusicApi/**/*'],
+    '**/*': [
+      './node_modules/NeteaseCloudMusicApi/**/*',
+      './node_modules/NeteaseCloudMusicApi/node_modules/**/*',
+    ],
   },
 
   // API 响应强制 utf-8
