@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, PanInfo } from 'framer-motion';
 import { siteConfig as defaultConfig } from '../siteConfig';
 import { useSiteConfig } from '../lib/useSiteConfig';
@@ -11,9 +11,7 @@ export default function Navbar() {
   const [showNav, setShowNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activePushTab, setActivePushTab] = useState('');
   const pathname = usePathname();
-  const router = useRouter();
   const { config: runtimeConfig } = useSiteConfig();
   const siteConfig = { ...defaultConfig, ...(runtimeConfig || {}) };
 
@@ -86,21 +84,11 @@ export default function Navbar() {
     { name: '音乐', href: '/music' },
   ];
 
-  // 推送子项 - 在 push 页面作为顶部 tab 不重复展示，这里仅在推选项下展开
-  const pushLinks = [
-    { name: '📦 版本管理', href: '/push#versions' },
-    { name: '🚀 推送新版本', href: '/push#push' },
-    { name: '🎮 MC 监控', href: '/push#mcmonitor' },
-    { name: '🌐 内网穿透', href: '/push#tunnelmonitor' },
-    { name: '📝 更新日志', href: '/push#changelog' },
-  ];
-
   const settingsLink = { name: '⚙ 设置', href: '/settings' };
 
-  // 手机端列表：博客链接 + 推送 + 设置
+  // 手机端列表：博客链接 + 设置
   const mobileNavLinks = [
     ...blogLinks.map((l) => ({ kind: 'link' as const, href: l.href, name: l.name })),
-    ...pushLinks.map((l) => ({ kind: 'link' as const, href: l.href, name: l.name.replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, '') })),
     { kind: 'link' as const, href: settingsLink.href, name: settingsLink.name },
   ];
 
@@ -122,35 +110,6 @@ export default function Navbar() {
                   {link.name}
                   {isActive && <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-indigo-500 rounded-full animate-pulse"></span>}
                 </Link>
-              );
-            })}
-            <span className="text-slate-300 dark:text-slate-600 mx-1">|</span>
-            {pushLinks.map((link) => {
-              const tabId = link.href.split('#').slice(1).join('#') || 'versions';
-              const isActive = pathname.startsWith('/push') && (
-                (typeof window !== 'undefined' && window.location.hash === '#' + tabId) ||
-                (tabId === 'versions' && pathname.startsWith('/push') && (typeof window === 'undefined' || !window.location.hash))
-              );
-              const onPushClick = (e: React.MouseEvent) => {
-                e.preventDefault();
-                if (!pathname.startsWith('/push')) {
-                  router.push(link.href);
-                } else {
-                  if (typeof window !== 'undefined') {
-                    history.replaceState(null, '', link.href);
-                    window.dispatchEvent(new HashChangeEvent('hashchange'));
-                  }
-                }
-              };
-              return (
-                <button
-                  key={link.href + link.name}
-                  type="button"
-                  onClick={onPushClick}
-                  className={`relative py-1 whitespace-nowrap transition-colors cursor-pointer ${isActive ? 'text-purple-600 dark:text-purple-400' : 'text-slate-700 dark:text-slate-200 hover:text-purple-600'}`}
-                >
-                  {link.name}
-                </button>
               );
             })}
             <span className="text-slate-300 dark:text-slate-600 mx-1">|</span>

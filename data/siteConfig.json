@@ -78,7 +78,6 @@
     "maxOutputTokens": 150,
     "temperature": 0.85
   },
-  "pushServerUrl": "http://localhost:23525",
   "themeColors": [
     "#6366f1",
     "#a855f7",

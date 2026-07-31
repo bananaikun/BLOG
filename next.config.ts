@@ -16,15 +16,6 @@ const nextConfig: NextConfig = {
   },
   // NCMAPI 作为外部 require 加载 (内部用 fs.readdir 动态 require ./module/*)
   serverExternalPackages: ['NeteaseCloudMusicApi'],
-  // 反向代理推送更新程序（已废弃，保留配置仅作兼容）
-  async rewrites() {
-    return [
-      {
-        source: '/push-webui/:path*',
-        destination: 'http://localhost:23526/:path*',
-      },
-    ];
-  },
 
   // API 响应强制 utf-8
   async headers() {

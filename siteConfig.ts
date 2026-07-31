@@ -25,7 +25,6 @@ export const siteConfig: any = {
   footerBadges: [],
   social: { github: '', gitee: '', google: '', email: '', qq: '', wechat: '' },
   geminiConfig: { modelId: 'gemini-2.5-flash-lite', systemPrompt: '', maxOutputTokens: 150, temperature: 0.85 },
-  pushServerUrl: 'http://localhost:23525',
   gitalkConfig: {
     clientID: '',
     clientSecret: '',

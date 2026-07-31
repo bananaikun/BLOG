@@ -28,7 +28,6 @@ const DEFAULT_CONFIG = {
   social: { github: '', gitee: '', google: '', email: '', qq: '', wechat: '' },
   gitalkConfig: { clientID: '', clientSecret: '', repo: '', owner: '', admin: [''] },
   geminiConfig: { modelId: '', systemPrompt: '', maxOutputTokens: 150, temperature: 0.85 },
-  pushServerUrl: 'http://localhost:23525',
 };
 
 export default function SettingsPage() {
@@ -742,6 +741,276 @@ function ProjectsSection() {
         <button onClick={save} disabled={saving} className="w-full py-3 bg-gradient-to-r from-pink-500 to-indigo-500 text-white rounded-2xl font-black shadow-lg disabled:opacity-50">{saving ? '保存中...' : '💾 保存所有项目'}</button>
         {msg && <div className="text-center text-sm font-bold text-slate-600 dark:text-slate-300">{msg}</div>}
       </div>
+    </div>
+  );
+}
+
+/* ======================== 文章管理 ======================== */
+function PostsSection() {
+  const [list, setList] = useState<any[]>([]);
+  const [editing, setEditing] = useState<any | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [msg, setMsg] = useState('');
+
+  const load = () => {
+    fetch('/api/posts', { cache: 'no-store' })
+      .then(r => r.json())
+      .then(d => { if (d?.posts) setList(d.posts); })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  };
+
+  useEffect(() => { load(); }, []);
+
+  const startNew = () => {
+    setEditing({
+      slug: '',
+      title: '',
+      description: '',
+      tags: [],
+      cover: '',
+      content: '',
+      date: new Date().toISOString().slice(0, 16),
+      isNew: true,
+    });
+  };
+
+  const startEdit = async (slug: string) => {
+    try {
+      const r = await fetch(`/api/posts/[slug]?slug=${encodeURIComponent(slug)}`, { cache: 'no-store' });
+      const j = await r.json();
+      if (j.ok && j.post) {
+        setEditing({ ...j.post, date: (j.post.date || '').slice(0, 16), isNew: false });
+      } else {
+        setMsg('❌ 加载文章失败：' + (j.error || '未知错误'));
+        setTimeout(() => setMsg(''), 4000);
+      }
+    } catch (e: any) {
+      setMsg('❌ 网络错误：' + e.message);
+      setTimeout(() => setMsg(''), 4000);
+    }
+  };
+
+  const updateField = (k: string, v: any) => {
+    setEditing((prev: any) => prev ? { ...prev, [k]: v } : prev);
+  };
+
+  const updateTags = (raw: string) => {
+    const tags = raw.split(/[,，]/).map(t => t.trim()).filter(Boolean);
+    updateField('tags', tags);
+  };
+
+  const uploadCover = () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = async (e: any) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      if (file.size > 50 * 1024 * 1024) {
+        setMsg('❌ 图片不能超过 50MB');
+        setTimeout(() => setMsg(''), 4000);
+        return;
+      }
+      setSaving(true);
+      const fd = new FormData();
+      fd.append('file', file);
+      try {
+        const res = await fetch('/api/upload', { method: 'POST', body: fd });
+        const data = await res.json();
+        if (data.success) {
+          updateField('cover', data.url);
+          setMsg('✅ 封面上传成功');
+        } else {
+          setMsg('❌ 上传失败: ' + (data.message || ''));
+        }
+      } catch {
+        setMsg('❌ 上传失败');
+      } finally {
+        setSaving(false);
+        setTimeout(() => setMsg(''), 4000);
+      }
+    };
+    input.click();
+  };
+
+  const save = async () => {
+    if (!editing?.title?.trim()) {
+      setMsg('❌ 标题不能为空');
+      setTimeout(() => setMsg(''), 4000);
+      return;
+    }
+    setSaving(true);
+    try {
+      const payload = {
+        title: editing.title,
+        content: editing.content || '',
+        description: editing.description || '',
+        tags: editing.tags || [],
+        cover: editing.cover || '',
+        date: editing.date ? new Date(editing.date).toISOString() : new Date().toISOString(),
+      };
+      const isEdit = !editing.isNew && editing.slug;
+      const url = isEdit
+        ? `/api/posts/[slug]?slug=${encodeURIComponent(editing.slug)}`
+        : '/api/posts';
+      const method = isEdit ? 'PUT' : 'POST';
+      const res = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const j = await res.json();
+      if (j.ok) {
+        setMsg(isEdit ? '✅ 文章已更新' : '✅ 文章已创建');
+        setEditing(null);
+        load();
+      } else {
+        setMsg('❌ 保存失败：' + (j.error || '未知错误'));
+      }
+    } catch (e: any) {
+      setMsg('❌ 网络错误：' + e.message);
+    } finally {
+      setSaving(false);
+      setTimeout(() => setMsg(''), 4000);
+    }
+  };
+
+  const remove = async (slug: string) => {
+    if (!confirm(`确定删除文章 ${slug}？此操作不可恢复！`)) return;
+    setSaving(true);
+    try {
+      const res = await fetch(`/api/posts/[slug]?slug=${encodeURIComponent(slug)}`, { method: 'DELETE' });
+      const j = await res.json();
+      if (j.ok) {
+        setMsg('🗑️ 文章已删除');
+        load();
+      } else {
+        setMsg('❌ 删除失败：' + (j.error || '未知错误'));
+      }
+    } catch (e: any) {
+      setMsg('❌ 网络错误：' + e.message);
+    } finally {
+      setSaving(false);
+      setTimeout(() => setMsg(''), 4000);
+    }
+  };
+
+  if (loading) {
+    return <div className="text-slate-400 animate-pulse">加载中...</div>;
+  }
+
+  // 编辑视图
+  if (editing) {
+    return (
+      <div>
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-xl font-black text-slate-800 dark:text-white">
+            {editing.isNew ? '📝 新建文章' : '✏️ 编辑文章'}
+          </h2>
+          <button onClick={() => setEditing(null)}
+            className="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-xl text-xs font-black">✕ 取消</button>
+        </div>
+
+        <div className="space-y-4">
+          <div>
+            <label className="text-[10px] font-black text-slate-400 uppercase ml-1">标题</label>
+            <input value={editing.title || ''} onChange={e => updateField('title', e.target.value)}
+              placeholder="文章标题"
+              className="w-full bg-white/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm mt-1 font-bold outline-none focus:ring-2 focus:ring-indigo-500" />
+          </div>
+
+          <div>
+            <label className="text-[10px] font-black text-slate-400 uppercase ml-1">描述（可选）</label>
+            <textarea rows={2} value={editing.description || ''} onChange={e => updateField('description', e.target.value)}
+              placeholder="一句话描述"
+              className="w-full bg-white/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm mt-1 outline-none focus:ring-2 focus:ring-indigo-500 resize-none" />
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="text-[10px] font-black text-slate-400 uppercase ml-1">发布日期</label>
+              <input type="datetime-local" value={editing.date || ''} onChange={e => updateField('date', e.target.value)}
+                className="w-full bg-white/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-sm mt-1 outline-none focus:ring-2 focus:ring-indigo-500" />
+            </div>
+            <div>
+              <label className="text-[10px] font-black text-slate-400 uppercase ml-1">标签（逗号分隔）</label>
+              <input value={(editing.tags || []).join(',')} onChange={e => updateTags(e.target.value)}
+                placeholder="标签1,标签2"
+                className="w-full bg-white/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-sm mt-1 outline-none focus:ring-2 focus:ring-indigo-500" />
+            </div>
+          </div>
+
+          <div>
+            <label className="text-[10px] font-black text-slate-400 uppercase ml-1">封面图（可选）</label>
+            <div className="flex gap-2 mt-1">
+              <input value={editing.cover || ''} onChange={e => updateField('cover', e.target.value)}
+                placeholder="封面 URL 或点击上传"
+                className="flex-1 bg-white/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500" />
+              <button onClick={uploadCover} disabled={saving}
+                className="px-4 py-2 bg-indigo-500 text-white rounded-xl text-xs font-black whitespace-nowrap disabled:opacity-50">📁 上传</button>
+            </div>
+            {editing.cover && <img src={editing.cover} className="mt-2 w-full h-32 object-cover rounded-xl border border-white/30" />}
+          </div>
+
+          <div>
+            <label className="text-[10px] font-black text-slate-400 uppercase ml-1">正文（Markdown）</label>
+            <textarea rows={20} value={editing.content || ''} onChange={e => updateField('content', e.target.value)}
+              placeholder="# 标题&#10;&#10;在这里写正文..."
+              className="w-full bg-white/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm mt-1 outline-none focus:ring-2 focus:ring-indigo-500 resize-y font-mono leading-relaxed" />
+          </div>
+
+          <button onClick={save} disabled={saving}
+            className="w-full py-3 bg-gradient-to-r from-pink-500 to-indigo-500 text-white rounded-2xl font-black shadow-lg disabled:opacity-50">
+            {saving ? '保存中...' : (editing.isNew ? '✨ 创建文章' : '💾 保存修改')}
+          </button>
+          {msg && <div className="text-center text-sm font-bold text-slate-600 dark:text-slate-300">{msg}</div>}
+        </div>
+      </div>
+    );
+  }
+
+  // 列表视图
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-xl font-black text-slate-800 dark:text-white">📝 文章管理</h2>
+        <button onClick={startNew}
+          className="px-4 py-2 bg-indigo-500 text-white rounded-xl text-xs font-black shadow-lg hover:bg-indigo-600">+ 新建</button>
+      </div>
+      <p className="text-[10px] font-bold text-slate-400 mb-4 uppercase">访问 <a href="/posts" className="text-indigo-500 underline">/posts</a> 查看效果</p>
+
+      <div className="space-y-3">
+        {list.length === 0 && (
+          <div className="text-center py-10 text-slate-400 text-sm">
+            <p className="font-bold">暂无文章</p>
+            <p className="text-xs mt-1">点击右上角"新建"开始创作</p>
+          </div>
+        )}
+        {list.map((p) => (
+          <div key={p.slug} className="p-4 bg-white/30 dark:bg-slate-800/30 rounded-2xl border border-white/20 flex items-center gap-3">
+            {p.cover ? (
+              <img src={p.cover} className="w-14 h-14 rounded-xl object-cover flex-shrink-0" />
+            ) : (
+              <div className="w-14 h-14 rounded-xl bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-2xl flex-shrink-0">📄</div>
+            )}
+            <div className="flex-1 min-w-0">
+              <div className="font-black text-sm text-slate-800 dark:text-white truncate">{p.title || p.slug}</div>
+              <div className="text-[10px] text-slate-500 mt-1 flex items-center gap-2 flex-wrap">
+                <span>📅 {p.date ? String(p.date).slice(0, 10) : '无日期'}</span>
+                {p.tags?.length > 0 && <span>🏷️ {p.tags.join(', ')}</span>}
+                <span className="text-slate-400">/{p.slug}</span>
+              </div>
+            </div>
+            <button onClick={() => startEdit(p.slug)}
+              className="px-3 py-2 bg-amber-500 text-white rounded-xl text-xs font-black whitespace-nowrap">✏️ 编辑</button>
+            <button onClick={() => remove(p.slug)}
+              className="px-3 py-2 bg-red-500 text-white rounded-xl text-xs font-black whitespace-nowrap">🗑️</button>
+          </div>
+        ))}
+      </div>
+      {msg && <div className="text-center text-sm font-bold text-slate-600 dark:text-slate-300 mt-4">{msg}</div>}
     </div>
   );
 }

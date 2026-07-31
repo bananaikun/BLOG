@@ -10,7 +10,6 @@ import CloudPlayer from '../components/CloudPlayer';
 import ThemeToggleBlock from '../components/ThemeToggleBlock';
 import ProfileCard from '../components/ProfileCard';
 import SiteDashboard from '../components/SiteDashboard';
-import ResourceDashboard from '../components/ResourceDashboard';
 import { albums } from '../data/albums';
 import LyricBar from '../components/LyricBar';
 import { ToastProvider } from '../components/ToastProvider';
@@ -120,15 +119,6 @@ export default function Home() {
                 <div className="col-span-1 lg:col-span-5 flex flex-col">
                     <CloudPlayer/>
                 </div>
-              </div>
-
-              {/* 电脑资源仪表盘 */}
-              <div className="w-full mt-2">
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-1 h-5 bg-indigo-500 rounded-full" />
-                  <h3 className="text-sm font-black text-slate-700 dark:text-slate-200">电脑资源监控</h3>
-                </div>
-                <ResourceDashboard />
               </div>
 
               {/* 歌词栏 */}
