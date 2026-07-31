@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>照片墙时间轴</title>
+  <style>
+    :root {
+      --bg: #0F0C1A;
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --accent-purple: #a855f7;
+      --accent-pink: #ec4899;
+      --timeline-line: rgba(168, 85, 247, 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: transparent;
+    }
+
+    .timeline-section {
+      background: var(--bg);
+      min-height: 100vh;
+      padding: 60px 20px;
+    }
+
+    .timeline-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background: var(--timeline-line);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      margin-bottom: 60px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-node {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent-pink);
+      box-shadow: 0 0 12px rgba(236, 72, 153, 0.6);
+      flex-shrink: 0;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    .slot {
+      width: 50%;
+    }
+
+    .left-slot {
+      padding-right: 60px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .right-slot {
+      padding-left: 60px;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .photo-card {
+      width: 420px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .date-badge {
+      background: var(--accent-purple);
+      color: var(--text-primary);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .category {
+      color: var(--text-secondary);
+      font-size: 12px;
+    }
+
+    .card-title {
+      color: var(--text-primary);
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .card-photo {
+      width: 100%;
+      height: 200px;
+      border-radius: 8px;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .timeline-line {
+        left: 20px;
+        transform: none;
+      }
+
+      .timeline-node {
+        left: 20px;
+        transform: translateX(-50%);
+      }
+
+      .timeline-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .slot {
+        width: 100%;
+        padding: 0 0 0 50px;
+      }
+
+      .left-slot,
+      .right-slot {
+        justify-content: flex-start;
+      }
+
+      .photo-card {
+        width: 100%;
+        max-width: 420px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="timeline-section">
+    <div class="timeline-container">
+      <div class="timeline-line"></div>
+
+      <div class="timeline-item">
+        <div class="slot left-slot">
+          <div class="photo-card">
+            <div class="card-meta">
+              <span class="date-badge">2024.06.15 18:30</span>
+              <span class="category">旅行</span>
+            </div>
+            <h3 class="card-title">京都的初夏</h3>
+            <p class="card-desc">走在鸭川边，风里有抹茶和樱花的味道。</p>
+            <img class="card-photo" src="./assets/images/2_48-20260726_033523135.png" alt="京都的初夏">
+          </div>
+        </div>
+        <div class="timeline-node"></div>
+        <div class="slot right-slot"></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="slot left-slot"></div>
+        <div class="timeline-node"></div>
+        <div class="slot right-slot">
+          <div class="photo-card">
+            <div class="card-meta">
+              <span class="date-badge">2024.08.22 20:15</span>
+              <span class="category">聚会</span>
+            </div>
+            <h3 class="card-title">夏夜烟火大会</h3>
+            <p class="card-desc">和朋友们挤在人群里，抬头就是满天花火。</p>
+            <img class="card-photo" src="./assets/images/2_62-20260726_033523135.png" alt="夏夜烟火大会">
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="slot left-slot">
+          <div class="photo-card">
+            <div class="card-meta">
+              <span class="date-badge">2024.10.05 15:40</span>
+              <span class="category">日常</span>
+            </div>
+            <h3 class="card-title">街角的猫咖</h3>
+            <p class="card-desc">午后阳光洒进来，猫咪在腿上打了个盹。</p>
+            <img class="card-photo" src="./assets/images/2_72-20260726_033523136.png" alt="街角的猫咖">
+          </div>
+        </div>
+        <div class="timeline-node"></div>
+        <div class="slot right-slot"></div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="slot left-slot"></div>
+        <div class="timeline-node"></div>
+        <div class="slot right-slot">
+          <div class="photo-card">
+            <div class="card-meta">
+              <span class="date-badge">2024.12.31 23:55</span>
+              <span class="category">节日</span>
+            </div>
+            <h3 class="card-title">跨年倒数</h3>
+            <p class="card-desc">在天台迎接新的一年，城市的灯海像星河。</p>
+            <img class="card-photo" src="./assets/images/2_84-20260726_033523136.png" alt="跨年倒数">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

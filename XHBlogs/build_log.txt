@@ -1,0 +1,112 @@
+﻿npx : 鈿?Warning: Next.js inferred your workspace root, but it may not be correct.
+所在位置 行:2 字符: 1
++ npx next build 2>&1 | Out-File -FilePath "build_log.txt" -Encoding ut ...
++ ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (鈿?Warning: Next...not be correct.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ We detected multiple lockfiles and selected the directory of D:\mod\HaYenai\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it'
+s not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * D:\mod\HaYenai\blog\XHBlogs\package-lock.json
+   * D:\mod\HaYenai\blog\package-lock.json
+
+鈻?Next.js 16.2.1 (Turbopack)
+
+  Creating an optimized production build ...
+Turbopack build encountered 1 warnings:
+./blog/XHBlogs/next.config.ts
+Encountered unexpected file in NFT list
+A file was traced that indicates that the whole project was traced unintentionally. Somewhere in the import trace below
+, there are:
+- filesystem operations (like path.join, path.resolve or fs.readFile), or
+- very dynamic requires (like require('./' + foo)).
+To resolve this, you can
+- remove them if possible, or
+- only use them in development, or
+- make sure they are statically scoped to some subfolder: path.join(process.cwd(), 'data', bar), or
+- add ignore comments: path.join(/*turbopackIgnore: true*/ process.cwd(), bar)
+
+Import trace:
+  Server Component:
+    ./blog/XHBlogs/next.config.ts
+    ./blog/XHBlogs/app/tree/page.tsx
+
+
+鉁?Compiled successfully in 9.3s
+  Skipping validation of types
+  Finished TypeScript config validation in 55ms ...
+  Collecting page data using 11 workers ...
+鈿?Using edge runtime on a page currently disables static generation for that page
+  Generating static pages using 11 workers (0/49) ...
+  Generating static pages using 11 workers (12/49) 
+  Generating static pages using 11 workers (24/49) 
+  Generating static pages using 11 workers (36/49) 
+鉁?Generating static pages using 11 workers (49/49) in 1373ms
+  Finalizing page optimization ...
+
+Route (app)
+鈹?鈼?/
+鈹?鈼?/_not-found
+鈹?鈼?/about
+鈹?茠 /api/announcements
+鈹?茠 /api/changelog
+鈹?茠 /api/chat
+鈹?茠 /api/config
+鈹?茠 /api/download/[id]
+鈹?茠 /api/github
+鈹?茠 /api/latest
+鈹?茠 /api/music
+鈹?茠 /api/music/playlist
+鈹?茠 /api/photowall
+鈹?茠 /api/push/[...path]
+鈹?茠 /api/push/announcements
+鈹?茠 /api/push/announcements/push
+鈹?茠 /api/push/changelog
+鈹?茠 /api/push/download/[id]
+鈹?茠 /api/push/latest
+鈹?茠 /api/push/login
+鈹?茠 /api/push/logs
+鈹?茠 /api/push/logs/stream
+鈹?茠 /api/push/mc-status
+鈹?茠 /api/push/mc-status/history
+鈹?茠 /api/push/mc-status/ping
+鈹?茠 /api/push/push-config
+鈹?茠 /api/push/settings
+鈹?茠 /api/push/stats
+鈹?茠 /api/push/system/info
+鈹?茠 /api/push/system/status
+鈹?茠 /api/push/tunnel-status
+鈹?茠 /api/push/tunnel-status/[tunnelId]/ping
+鈹?茠 /api/push/versions
+鈹?茠 /api/push/versions/[id]
+鈹?茠 /api/system
+鈹?茠 /api/system/resources
+鈹?茠 /api/test
+鈹?茠 /api/upload
+鈹?茠 /api/weather
+鈹?鈼?/chatter
+鈹?鈼?/chatter/[slug]
+鈹?鈹?/chatter/2026-03-25-originium-research
+鈹?鈼?/download
+鈹?鈼?/friends
+鈹?鈼?/moments
+鈹?鈼?/music
+鈹?鈼?/photowall
+鈹?鈼?/posts/[slug]
+鈹?鈹?/posts/2222
+鈹?鈹?/posts/first
+鈹?鈹?/posts/long-test-article
+鈹?鈼?/projects
+鈹?鈼?/push
+鈹?鈼?/settings
+鈹?鈼?/timeline
+鈹?鈼?/tree
+
+
+鈼? (Static)   prerendered as static content
+鈼? (SSG)      prerendered as static HTML (uses generateStaticParams)
+茠  (Dynamic)  server-rendered on demand
+

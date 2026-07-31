@@ -1,0 +1,95 @@
+{
+  "totalDownloads": 0,
+  "totalUploads": 5,
+  "totalDownloadBytes": 0,
+  "perVersion": {
+    "1": {
+      "downloads": 0,
+      "bytesDownloaded": 0,
+      "uploadedAt": 1783224575097,
+      "mandatory": false
+    },
+    "2": {
+      "downloads": 0,
+      "bytesDownloaded": 0,
+      "uploadedAt": 1783225012532,
+      "mandatory": false
+    },
+    "3": {
+      "downloads": 0,
+      "bytesDownloaded": 0,
+      "uploadedAt": 1783226173763,
+      "mandatory": true
+    },
+    "4": {
+      "downloads": 0,
+      "bytesDownloaded": 0,
+      "uploadedAt": 1783226859579,
+      "mandatory": true
+    },
+    "5": {
+      "downloads": 0,
+      "bytesDownloaded": 0,
+      "uploadedAt": 1783238694726,
+      "mandatory": true
+    }
+  },
+  "perClient": {},
+  "recent": [
+    {
+      "ts": 1783224575097,
+      "type": "upload",
+      "versionId": 1,
+      "version": "1.0.58",
+      "versionCode": 58,
+      "appId": "com.hayenai.app",
+      "platform": "android",
+      "sizeBytes": 70731948,
+      "clientIp": "127.0.0.1"
+    },
+    {
+      "ts": 1783225012532,
+      "type": "upload",
+      "versionId": 2,
+      "version": "1.0.59",
+      "versionCode": 59,
+      "appId": "com.hayenai.app",
+      "platform": "android",
+      "sizeBytes": 70734336,
+      "clientIp": "127.0.0.1"
+    },
+    {
+      "ts": 1783226173763,
+      "type": "upload",
+      "versionId": 3,
+      "version": "1.0.60",
+      "versionCode": 60,
+      "appId": "com.hayenai.app",
+      "platform": "android",
+      "sizeBytes": 70734648,
+      "clientIp": "127.0.0.1"
+    },
+    {
+      "ts": 1783226859579,
+      "type": "upload",
+      "versionId": 4,
+      "version": "1.0.61",
+      "versionCode": 61,
+      "appId": "com.hayenai.app",
+      "platform": "android",
+      "sizeBytes": 70735104,
+      "clientIp": "127.0.0.1"
+    },
+    {
+      "ts": 1783238694726,
+      "type": "upload",
+      "versionId": 5,
+      "version": "1.0.62",
+      "versionCode": 62,
+      "appId": "com.hayenai.app",
+      "platform": "android",
+      "sizeBytes": 70735504,
+      "clientIp": "127.0.0.1"
+    }
+  ]
+}

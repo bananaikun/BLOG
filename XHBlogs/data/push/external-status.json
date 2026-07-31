@@ -1,0 +1,749 @@
+{
+  "current": {
+    "online": true,
+    "avgLatencyMs": 24,
+    "lastCheckAt": 1783238794767,
+    "lastError": null,
+    "results": [
+      {
+        "name": "阿里云 DNS",
+        "ok": true,
+        "latencyMs": 28,
+        "statusCode": null,
+        "error": null
+      },
+      {
+        "name": "腾讯云 DNS",
+        "ok": false,
+        "latencyMs": 3006,
+        "statusCode": null,
+        "error": "timeout"
+      },
+      {
+        "name": "百度",
+        "ok": true,
+        "latencyMs": 20,
+        "statusCode": null,
+        "error": null
+      },
+      {
+        "name": "阿里云",
+        "ok": true,
+        "latencyMs": 22,
+        "statusCode": null,
+        "error": null
+      },
+      {
+        "name": "哔哩哔哩",
+        "ok": true,
+        "latencyMs": 27,
+        "statusCode": null,
+        "error": null
+      }
+    ],
+    "successCount": 4,
+    "totalCount": 5
+  },
+  "history": [
+    {
+      "ts": 1783058890665,
+      "online": true,
+      "avgLatencyMs": 26,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783058903672,
+      "online": true,
+      "avgLatencyMs": 24,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783058916683,
+      "online": true,
+      "avgLatencyMs": 24,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783058929705,
+      "online": true,
+      "avgLatencyMs": 22,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224231857,
+      "online": true,
+      "avgLatencyMs": 373,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224241875,
+      "online": true,
+      "avgLatencyMs": 26,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224254886,
+      "online": true,
+      "avgLatencyMs": 29,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224267891,
+      "online": true,
+      "avgLatencyMs": 30,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224280913,
+      "online": true,
+      "avgLatencyMs": 22,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224293929,
+      "online": true,
+      "avgLatencyMs": 33,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224306948,
+      "online": true,
+      "avgLatencyMs": 22,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224319966,
+      "online": true,
+      "avgLatencyMs": 29,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224332992,
+      "online": true,
+      "avgLatencyMs": 28,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224346017,
+      "online": true,
+      "avgLatencyMs": 22,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224359031,
+      "online": true,
+      "avgLatencyMs": 25,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224372048,
+      "online": true,
+      "avgLatencyMs": 30,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224385060,
+      "online": true,
+      "avgLatencyMs": 30,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224398071,
+      "online": true,
+      "avgLatencyMs": 26,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224411082,
+      "online": true,
+      "avgLatencyMs": 24,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224424101,
+      "online": true,
+      "avgLatencyMs": 23,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224437110,
+      "online": true,
+      "avgLatencyMs": 29,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224450129,
+      "online": true,
+      "avgLatencyMs": 25,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224463146,
+      "online": true,
+      "avgLatencyMs": 23,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224476169,
+      "online": true,
+      "avgLatencyMs": 23,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224489193,
+      "online": true,
+      "avgLatencyMs": 26,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224502203,
+      "online": true,
+      "avgLatencyMs": 21,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224515218,
+      "online": true,
+      "avgLatencyMs": 27,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224528226,
+      "online": true,
+      "avgLatencyMs": 33,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224541247,
+      "online": true,
+      "avgLatencyMs": 23,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224568328,
+      "online": true,
+      "avgLatencyMs": 278,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224578350,
+      "online": true,
+      "avgLatencyMs": 29,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224591356,
+      "online": true,
+      "avgLatencyMs": 22,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224604381,
+      "online": true,
+      "avgLatencyMs": 22,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783224617398,
+      "online": true,
+      "avgLatencyMs": 24,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225005978,
+      "online": true,
+      "avgLatencyMs": 288,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225016004,
+      "online": true,
+      "avgLatencyMs": 26,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225029024,
+      "online": true,
+      "avgLatencyMs": 24,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225042033,
+      "online": true,
+      "avgLatencyMs": 25,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225055061,
+      "online": true,
+      "avgLatencyMs": 25,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225068085,
+      "online": true,
+      "avgLatencyMs": 23,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225081095,
+      "online": true,
+      "avgLatencyMs": 25,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225094118,
+      "online": true,
+      "avgLatencyMs": 37,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225107124,
+      "online": true,
+      "avgLatencyMs": 25,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225120127,
+      "online": true,
+      "avgLatencyMs": 22,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225133137,
+      "online": true,
+      "avgLatencyMs": 24,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225146159,
+      "online": true,
+      "avgLatencyMs": 35,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225159171,
+      "online": true,
+      "avgLatencyMs": 30,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225172184,
+      "online": true,
+      "avgLatencyMs": 23,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225185200,
+      "online": true,
+      "avgLatencyMs": 37,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225198224,
+      "online": true,
+      "avgLatencyMs": 22,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225211239,
+      "online": true,
+      "avgLatencyMs": 28,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225224252,
+      "online": true,
+      "avgLatencyMs": 22,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225237261,
+      "online": true,
+      "avgLatencyMs": 38,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225250287,
+      "online": true,
+      "avgLatencyMs": 38,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225263299,
+      "online": true,
+      "avgLatencyMs": 23,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225276322,
+      "online": true,
+      "avgLatencyMs": 22,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225289329,
+      "online": true,
+      "avgLatencyMs": 32,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225302347,
+      "online": true,
+      "avgLatencyMs": 29,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225315369,
+      "online": true,
+      "avgLatencyMs": 26,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225328402,
+      "online": true,
+      "avgLatencyMs": 34,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225341424,
+      "online": true,
+      "avgLatencyMs": 25,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225354440,
+      "online": true,
+      "avgLatencyMs": 25,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225367459,
+      "online": true,
+      "avgLatencyMs": 25,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225380470,
+      "online": true,
+      "avgLatencyMs": 35,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225393495,
+      "online": true,
+      "avgLatencyMs": 25,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225406513,
+      "online": true,
+      "avgLatencyMs": 25,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225419521,
+      "online": true,
+      "avgLatencyMs": 31,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225432530,
+      "online": true,
+      "avgLatencyMs": 37,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225445552,
+      "online": true,
+      "avgLatencyMs": 21,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225458572,
+      "online": true,
+      "avgLatencyMs": 27,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225471600,
+      "online": true,
+      "avgLatencyMs": 32,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225484607,
+      "online": true,
+      "avgLatencyMs": 37,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225497626,
+      "online": true,
+      "avgLatencyMs": 28,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225510640,
+      "online": true,
+      "avgLatencyMs": 23,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225523665,
+      "online": true,
+      "avgLatencyMs": 26,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225536680,
+      "online": true,
+      "avgLatencyMs": 27,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225549697,
+      "online": true,
+      "avgLatencyMs": 24,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225562711,
+      "online": true,
+      "avgLatencyMs": 23,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783225575728,
+      "online": true,
+      "avgLatencyMs": 26,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783226854436,
+      "online": true,
+      "avgLatencyMs": 276,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783226864449,
+      "online": true,
+      "avgLatencyMs": 23,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783226877462,
+      "online": true,
+      "avgLatencyMs": 26,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783226890479,
+      "online": true,
+      "avgLatencyMs": 23,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783226903502,
+      "online": true,
+      "avgLatencyMs": 30,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783226916507,
+      "online": true,
+      "avgLatencyMs": 40,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783226929526,
+      "online": true,
+      "avgLatencyMs": 30,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783226942548,
+      "online": true,
+      "avgLatencyMs": 22,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783226955567,
+      "online": true,
+      "avgLatencyMs": 25,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783227364432,
+      "online": true,
+      "avgLatencyMs": 269,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783227374433,
+      "online": true,
+      "avgLatencyMs": 24,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783238680586,
+      "online": true,
+      "avgLatencyMs": 327,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783238690613,
+      "online": true,
+      "avgLatencyMs": 37,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783238703646,
+      "online": true,
+      "avgLatencyMs": 23,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783238716656,
+      "online": true,
+      "avgLatencyMs": 27,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783238729687,
+      "online": true,
+      "avgLatencyMs": 28,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783238742705,
+      "online": true,
+      "avgLatencyMs": 27,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783238755723,
+      "online": true,
+      "avgLatencyMs": 22,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783238768739,
+      "online": true,
+      "avgLatencyMs": 22,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783238781753,
+      "online": true,
+      "avgLatencyMs": 23,
+      "successCount": 4,
+      "totalCount": 5
+    },
+    {
+      "ts": 1783238794767,
+      "online": true,
+      "avgLatencyMs": 24,
+      "successCount": 4,
+      "totalCount": 5
+    }
+  ]
+}

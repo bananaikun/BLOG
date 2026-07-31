@@ -1,0 +1,49 @@
+# 依赖
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js 构建产物
+.next/
+out/
+build/
+dist/
+
+# 生产构建
+*.tsbuildinfo
+next-env.d.ts
+
+# 环境变量
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 日志
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 缓存
+.cache/
+.turbo/
+.eslintcache
+
+# 用户上传的临时文件 (按需保留 public/uploads 内容)
+# public/uploads/
+
+# 推送服务端数据 (运行时生成的数据)
+XHBlogs/data/config_backups/
