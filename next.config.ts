@@ -13,8 +13,14 @@ const nextConfig: NextConfig = {
   // Turbopack 锁定到 ASCII 路径避免中文路径 bug
   turbopack: {
     root: path.resolve(__dirname),
+    // NeteaseCloudMusicApi 内部用 fs.readdir + 动态 require('./module/' + file),
+    // Turbopack 无法追踪这种动态导入, 必须显式 ignore 整个包
+    resolveAlias: {
+      'NeteaseCloudMusicApi': { browser: false },
+    },
   },
   // NCMAPI 作为外部 require 加载 (内部用 fs.readdir 动态 require ./module/*)
+  // webpack 时代用 serverExternalPackages, Turbopack 时代需要 resolveAlias
   serverExternalPackages: ['NeteaseCloudMusicApi'],
 
   // API 响应强制 utf-8
