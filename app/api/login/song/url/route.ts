@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { fixNcmCookie } from '@/lib/ncm-cookie'
+import { loadNcm } from '@/lib/ncm-loader'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -25,7 +26,7 @@ export async function GET(request: NextRequest) {
   const finalCookie = fixNcmCookie(rawCookie)
 
   try {
-    const NCM = await import('NeteaseCloudMusicApi')
+    const NCM = await loadNcm()
 
     // 1. 有 cookie 优先用 song_url_v1 + level=jymaster (VIP 超清母带)
     if (finalCookie) {

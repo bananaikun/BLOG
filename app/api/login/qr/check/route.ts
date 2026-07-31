@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { loadNcm } from '@/lib/ncm-loader'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -9,7 +10,7 @@ export async function GET(request: NextRequest) {
   if (!key) return NextResponse.json({ code: 400, msg: 'Missing key' }, { status: 400 })
 
   try {
-    const NCM = await import('NeteaseCloudMusicApi')
+    const NCM = await loadNcm()
     const result: any = await NCM.login_qr_check({ key })
     const body = result?.body || {}
     return NextResponse.json({

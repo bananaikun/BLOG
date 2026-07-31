@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { fixNcmCookie } from '@/lib/ncm-cookie'
+import { loadNcm } from '@/lib/ncm-loader'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -28,7 +29,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const NCM = await import('NeteaseCloudMusicApi')
+    const NCM = await loadNcm()
 
     // 提取 profile/account 的辅助函数 (兼容 login_status 与 user_account 两种返回结构)
     const extract = (result: any) => {

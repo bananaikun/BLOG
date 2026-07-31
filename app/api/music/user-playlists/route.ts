@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { fixNcmCookie } from '@/lib/ncm-cookie';
+import { loadNcm } from '@/lib/ncm-loader';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -21,7 +22,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const NCM = await import('NeteaseCloudMusicApi');
+    const NCM = await loadNcm();
 
     // 1. 先用 cookie 获取真实 userId (MUSIC_U 不是 userId!)
     let userId = uidParam || '';

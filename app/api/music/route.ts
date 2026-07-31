@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { fixNcmCookie } from '@/lib/ncm-cookie'
+import { loadNcm } from '@/lib/ncm-loader'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -49,7 +50,7 @@ export async function GET(request: NextRequest) {
   const results: SongResult[] = await Promise.all(
     songIds.map(async (songId): Promise<SongResult> => {
       try {
-        const NCM = await import('NeteaseCloudMusicApi')
+        const NCM = await loadNcm()
 
         // 1. 详情 (song_detail 返回数组, 取第一个)
         const detailRes = await NCM.song_detail({

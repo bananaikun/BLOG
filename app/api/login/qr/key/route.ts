@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { loadNcm } from '@/lib/ncm-loader'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -7,7 +8,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json().catch(() => ({}))
     const type = body.type || 1
-    const NCM = await import('NeteaseCloudMusicApi')
+    const NCM = await loadNcm()
     const result: any = await NCM.login_qr_key({ type })
     const data = result?.body?.data || {}
     // 返回标准化格式给前端
