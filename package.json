@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 23525",
+    "prebuild": "node -e \"require('fs').mkdirSync('.next', { recursive: true }); require('fs').writeFileSync('.next/lock', '');\"",
     "build": "next build --webpack",
     "start": "next start -p 23525",
     "lint": "eslint"
