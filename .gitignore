@@ -1,49 +1,41 @@
-# 依赖
-node_modules/
-.pnp
-.pnp.js
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Next.js 构建产物
-.next/
-out/
-build/
-dist/
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-# 生产构建
-*.tsbuildinfo
-next-env.d.ts
+# testing
+/coverage
 
-# 环境变量
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# next.js
+/.next/
+/out/
 
-# 日志
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-*.log
+.pnpm-debug.log*
 
-# 系统文件
-.DS_Store
-Thumbs.db
-desktop.ini
+# env files (can opt-in for committing if needed)
+.env*
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
+# vercel
+.vercel
 
-# 缓存
-.cache/
-.turbo/
-.eslintcache
-
-# 用户上传的临时文件 (按需保留 public/uploads 内容)
-# public/uploads/
-
-# 推送服务端数据 (运行时生成的数据)
-XHBlogs/data/config_backups/
+# typescript
+*.tsbuildinfo
+next-env.d.ts

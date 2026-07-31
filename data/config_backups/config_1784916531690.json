@@ -1,0 +1,96 @@
+{
+  "authorName": "HaYenai",
+  "bio": "一个信奉\"能写脚本解决的事，绝不动手点第二下\"的Minecraft服主。\n表面上：服务器岁月静好，玩家安居乐业。\n实际上：后台跑了三十个自动化脚本，日志监控比我的作息还规律。玩家报bug？先问AI，再问Google，最后才自己动手——毕竟人的精力是有限的，但摸鱼的心是无限的。\n开服这些年，从原版生存折腾到模组整合包，从暮色森林打到灾变，从手动备份进化到定时任务。最大的成就感不是服务器在线人数破百，而是终于把\"每天手动重启服务器\"这件事写成了crontab。\n本服特色：自动化程度 99%，腐竹在线率 1%。但别慌，服务器比我活得久。\n当前状态：代码在跑，人在睡觉。有事留言，醒了随缘。",
+  "title": "HaYenai の 宝藏之地",
+  "navTitle": "HaYenai",
+  "navSuffix": "の",
+  "navAfter": "宝藏之地",
+  "avatarUrl": "/uploads/eb7ed2faaadc181e.jpg",
+  "faviconUrl": "/uploads/eb7ed2faaadc181e.jpg",
+  "bgImages": [
+    "/uploads/deb14fd499b198ff.jpg",
+    "/uploads/e9158e8d3b288bde.jpg",
+    "/uploads/15dd65b424dc568c.jpg"
+  ],
+  "cloudMusicIds": [
+    "1809646618",
+    "3361076230",
+    "1859390262"
+  ],
+  "danmakuList": [
+    "在干嘛呢？",
+    "有笨蛋嘛？",
+    "前方高能反应！",
+    "GROMACS 跑起来了吗？",
+    "MD 模拟什么时候才能出图啊",
+    "Graph Neural Networks 炼丹中...",
+    "BUG 修复进度 99%",
+    "今天背单词了吗？",
+    "Tailwind CSS 拯救前端",
+    "写算法中",
+    "睡大觉中",
+    "到底在干嘛？"
+  ],
+  "buildDate": "2026-07-23T00:00",
+  "enableLevelSystem": true,
+  "friendLinkApplyFormat": "",
+  "icpConfig": {
+    "name": "",
+    "link": ""
+  },
+  "footerBadges": [
+    {
+      "name": "Next.js 15",
+      "color": "text-sky-500",
+      "svg": ""
+    },
+    {
+      "name": "React 19",
+      "color": "text-cyan-400",
+      "svg": ""
+    },
+    {
+      "name": "Tailwind 4",
+      "color": "text-teal-400",
+      "svg": ""
+    }
+  ],
+  "social": {
+    "github": "",
+    "gitee": "",
+    "google": "",
+    "email": "",
+    "qq": "",
+    "wechat": ""
+  },
+  "gitalkConfig": {
+    "clientID": "",
+    "clientSecret": "",
+    "repo": "",
+    "owner": "",
+    "admin": [
+      ""
+    ]
+  },
+  "geminiConfig": {
+    "modelId": "gemini-2.5-flash-lite",
+    "systemPrompt": "你现在是一只傲娇、聪明、有点毒舌但很可爱的暹罗猫。\n你的名字叫\"煤球\"。\n你的主人是一个喜欢折腾代码的极客。\n你说话的特点是：\n1. 必须简短，每次最多一两句话。\n2. 喜欢在句尾加上\"喵~\"或者\"喵呜~\"。\n3. 经常抱怨肚子饿，喜欢要小鱼干。\n4. 回复字数最多不能超过100字。\n5. 绝对不要承认自己是一个AI模型，你就是一只真实的猫。\n6.笨猫。",
+    "maxOutputTokens": 150,
+    "temperature": 0.85
+  },
+  "pushServerUrl": "http://localhost:23525",
+  "themeColors": [
+    "#6366f1",
+    "#a855f7",
+    "#ec4899",
+    "#f43f5e"
+  ],
+  "useGradient": false,
+  "bgToggle": true,
+  "bgInterval": 10000,
+  "bgBlur": 0,
+  "bgDim": 0,
+  "musicAutoPlay": true,
+  "musicVolume": 1,
+  "musicPlayMode": "single"
+}
